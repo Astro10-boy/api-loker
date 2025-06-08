@@ -43,4 +43,22 @@ class LokersController extends Controller
             'data' => $loker],
             200);
     }
+    // hapus loker berdasarkan id
+public function destroy($id)
+{
+    $loker = Lokers::find($id);
+
+    if (!$loker) {
+        return response()->json([
+            'message' => 'Loker tidak ditemukan'
+        ], 404);
+    }
+
+    $loker->delete();
+
+    return response()->json([
+        'message' => 'Loker berhasil dihapus'
+    ], 200);
+}
+
 }

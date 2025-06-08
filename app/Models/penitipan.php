@@ -5,24 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class penitipan extends Model
+class Penitipan extends Model
 {
-    /** @use HasFactory<\Database\Factories\PentipanFactory> */
     use HasFactory;
 
     protected $table = 'penitipan';
+
+    // tambahkan field sesuai data baru, hilangkan user_id kalau gak dipakai lagi
     protected $fillable = [
-        'user_id',
+        'nama',
+        'rfid',
         'loker_id',
         'waktu_mulai',
         'waktu_selesai',
         'durasi_menit',
         'biaya',
-        'status'
+        'status', // kalau status masih dipakai
     ];
 
     public function loker()
     {
-        return $this->belongsTo(Lokers::class);
+        return $this->belongsTo(Lokers::class, 'loker_id');
     }
 }
