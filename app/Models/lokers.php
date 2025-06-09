@@ -16,4 +16,5 @@ class lokers extends Model
     {
         return $this->hasMany(Penitipan::class);
     }
+    
 }
