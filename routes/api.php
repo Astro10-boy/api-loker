@@ -12,4 +12,4 @@ Route::get('/penitipan', [PenitipanController::class, 'index']);
 Route::post('/penitipan/store', [PenitipanController::class, 'store']);
 Route::delete('/lokers/{id}', [LokersController::class, 'destroy']);
 Route::get('/lokers/{id}/penitipan', [PenitipanController::class, 'getByLoker']);
-
+Route::get('/penitipan/loker/{id}', [PenitipanController::class, 'getByLokerId']);

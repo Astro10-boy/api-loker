@@ -33,7 +33,7 @@ $validator = Validator::make($request->all(), [
     }
 
     $waktuMulai = now();
-    $durasiDetik = 75; // Misalnya 75 detik untuk percobaan
+    $durasiDetik = 30; // Misalnya 75 detik untuk percobaan
     $waktuSelesai = (clone $waktuMulai)->addSeconds($durasiDetik);
 
     // Hitung biaya: tiap 30 detik = +1000
@@ -70,5 +70,18 @@ public function getByLoker($lokerId)
     ]);
 }
 
+
+public function getByLokerId($id)
+{
+    $penitipan = Penitipan::where('loker_id', $id)
+        ->latest()
+        ->first(); // Ambil yang terbaru
+
+    if (!$penitipan) {
+        return response()->json(['message' => 'Data tidak ditemukan'], 404);
+    }
+
+    return response()->json($penitipan);
+}
 
 }
